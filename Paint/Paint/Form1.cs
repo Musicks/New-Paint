@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -16,59 +17,56 @@ namespace Paint
         {
             InitializeComponent();
         }
+
+       
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
-        }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
             String command = textBox1.Text;
-            string[] syntax = command.Split('\n');
-            int i = syntax.Length;
-            int count = 0;
-            while (count < i)
+            string[] syntax = Regex.Split(textBox1.Text.ToUpper(), "\r\n");
+
+            for (int i = 0; i < syntax.Length; i++)
             {
 
-                string[] text = syntax[count].Split(' ');
-                if (text[0].ToUpper().Equals("DRAW"))
+
+                if (syntax[i].Contains("RECTANGLE") == true)
                 {
 
-                    string[] param = text[2].Split(',');
-                    if (text[1].ToUpper().Equals("RECTANGLE"))
-                    {
-                        int parameter1 = Convert.ToInt32(param[0]);
-                        int parameter2 = Convert.ToInt32(param[1]);
-                        int parameter3 = Convert.ToInt32(param[2]);
-                        int parameter4 = Convert.ToInt32(param[3]);
-                        MessageBox.Show("Draw rectangle with parameter" + parameter1 + "and" + parameter2);
-                    }
-                    if (text[1].ToUpper().Equals("TRIANGLE"))
-                    {
-                        int parameter1 = Convert.ToInt32(param[0]);
-                        int parameter2 = Convert.ToInt32(param[1]);
-                        int parameter3 = Convert.ToInt32(param[2]);
-                        int parameter4 = Convert.ToInt32(param[3]);
-                        MessageBox.Show("Draw triangle with parameter" + parameter1 + "and" + parameter2);
-                    }
-                    if (text[1].ToUpper().Equals("CIRCLE"))
-                    {
-                        int parameter1 = Convert.ToInt32(param[0]);
-                        int parameter2 = Convert.ToInt32(param[1]);
-                        int parameter3 = Convert.ToInt32(param[2]);
-                        int parameter4 = Convert.ToInt32(param[3]);
-                        MessageBox.Show("Draw circle with parameter" + parameter1 + "and" + parameter2);
-                    }
-                    if (text[1].ToUpper().Equals("POLYGON"))
-                    {
-                        int parameter1 = Convert.ToInt32(param[0]);
-                        int parameter2 = Convert.ToInt32(param[1]);
-                        int parameter3 = Convert.ToInt32(param[2]);
-                        int parameter4 = Convert.ToInt32(param[3]);
-                        MessageBox.Show("Draw polygon with parameter" + parameter1 + "and" + parameter2);
-                    }
+                    rectangle rg = new rectangle();
+                    string errMsg = rg.getData(e, syntax[i], i);
                 }
-                count++;
+               // if (syntax[i].Contains("TRIANGLE") == true)
+                {
+                    triangle trg = new triangle();
+                    //string errMsg = trg.getData(e, syntax[i], i);
+
+                }
+               // if (syntax[i].Contains("CIRCLE") == true)
+                {
+                   // circle1 crc = new circle1();
+                    //string errMsg = crc.getData(e, syntax[i], i);
+                }
+               // if (syntax[i].Contains("POLYGON") == true)
+                {
+                    //polygon pg = new polygon();
+                    //string errMsg = pg.getData(e, syntax[i], i);
+                }
+
+            }
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            String command = textBox1.Text;
+            string[] syntax = Regex.Split(textBox1.Text.ToUpper(), "\r\n");
+            for (int i = 0; i < syntax.Length; i++)
+            {
+                if (syntax[i].Equals("RUN"))
+                {
+                    panel1.Refresh();
+                }
             }
         }
     }
