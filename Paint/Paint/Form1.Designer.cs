@@ -37,15 +37,15 @@
             this.textBox1.Location = new System.Drawing.Point(12, 26);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(474, 226);
+            this.textBox1.Size = new System.Drawing.Size(474, 199);
             this.textBox1.TabIndex = 0;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // panel1
             // 
-            this.panel1.Location = new System.Drawing.Point(12, 289);
+            this.panel1.Location = new System.Drawing.Point(12, 264);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(474, 181);
+            this.panel1.Size = new System.Drawing.Size(474, 171);
             this.panel1.TabIndex = 1;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
@@ -53,7 +53,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(502, 482);
+            this.ClientSize = new System.Drawing.Size(502, 469);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.textBox1);
             this.Name = "Form1";

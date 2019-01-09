@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Paint
 {
-    class rectangle : Shape
+    class square : Shape
     {
-        public Rectangle rect;
+        public Rectangle sqr;
         public Graphics g;
         public override double area()
         {
@@ -20,11 +20,12 @@ namespace Paint
         {
             throw new NotImplementedException();
         }
+
         protected void paintRectangle(System.Windows.Forms.PaintEventArgs e, int l, int b, int x, int y)
         {
-            rect = new Rectangle(x, y, l, b);
+            sqr = new Rectangle(x, y, l, b);
             g = e.Graphics;
-            g.DrawRectangle(black, rect);
+            g.DrawRectangle(black, sqr);
         }
 
         public String getData(System.Windows.Forms.PaintEventArgs e, String line, int i)
@@ -42,9 +43,9 @@ namespace Paint
                 string[] resultList = result.Split(',');
                 try
                 {
-                    if (resultList.Length == 4)
+                    if (resultList.Length == 3)
                     {
-                        paintRectangle(e, Int32.Parse(resultList[0]), Int32.Parse(resultList[1]), Int32.Parse(resultList[2]), Int32.Parse(resultList[3]));
+                        paintRectangle(e, Int32.Parse(resultList[0]), Int32.Parse(resultList[1]), Int32.Parse(resultList[2]), Int32.Parse(resultList[2]));
                         errMsg = "";
                     }
                     else if (resultList.Length == 5)

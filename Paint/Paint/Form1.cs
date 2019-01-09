@@ -36,16 +36,22 @@ namespace Paint
                     rectangle rg = new rectangle();
                     string errMsg = rg.getData(e, syntax[i], i);
                 }
-               // if (syntax[i].Contains("TRIANGLE") == true)
+                if (syntax[i].Contains("SQUARE") == true)
+                {
+
+                    square rg = new square();
+                    string errMsg = rg.getData(e, syntax[i], i);
+                }
+                // if (syntax[i].Contains("TRIANGLE") == true)
                 {
                     triangle trg = new triangle();
                     //string errMsg = trg.getData(e, syntax[i], i);
 
                 }
-               // if (syntax[i].Contains("CIRCLE") == true)
+               if (syntax[i].Contains("CIRCLE") == true)
                 {
-                   // circle1 crc = new circle1();
-                    //string errMsg = crc.getData(e, syntax[i], i);
+                   circle crc = new circle();
+                    string errMsg = crc.getData(e, syntax[i], i);
                 }
                // if (syntax[i].Contains("POLYGON") == true)
                 {
