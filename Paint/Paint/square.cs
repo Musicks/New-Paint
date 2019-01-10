@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -28,7 +29,7 @@ namespace Paint
             g.DrawRectangle(black, sqr);
         }
 
-        public override String getData(System.Windows.Forms.PaintEventArgs e, String line, int i)
+        public override String getData(System.Windows.Forms.PaintEventArgs e, String line, int i,Hashtable hashtable)
         {
             string errMsg = "";
             if (line.Contains("[") && line.Contains("]") && line.Contains(","))

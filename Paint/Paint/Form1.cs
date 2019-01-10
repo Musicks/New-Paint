@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,6 +14,7 @@ namespace Paint
 {
     public partial class Form1 : Form
     {
+        Hashtable hashtable = new Hashtable();
         public Form1()
         {
             InitializeComponent();
@@ -34,13 +36,13 @@ namespace Paint
                 if (syntax[i].Contains("RECTANGLE") == true)
                 {
                     Shape s = fact.getShape("RECTANGLE");
-                    string errMsg = s.getData(e, syntax[i], i);
+                    string errMsg = s.getData(e, syntax[i], i,hashtable);
                     textBox2.Text = errMsg;
                 }
                 if (syntax[i].Contains("SQUARE") == true)
                 {
                     Shape s = fact.getShape("SQUARE");
-                    string errMsg = s.getData(e, syntax[i], i);
+                    string errMsg = s.getData(e, syntax[i], i,hashtable);
                     textBox2.Text = errMsg;
                 }
                 // if (syntax[i].Contains("TRIANGLE") == true)
@@ -52,10 +54,37 @@ namespace Paint
                if (syntax[i].Contains("CIRCLE") == true)
                 {
                     Shape s = fact.getShape("CIRCLE");
-                    string errMsg = s.getData(e, syntax[i], i);
+                    string errMsg = s.getData(e, syntax[i], i,hashtable);
                     textBox2.Text = errMsg;
                 }
-               // if (syntax[i].Contains("POLYGON") == true)
+                if (syntax[i].Contains("INT") == true)
+                {
+                    if (syntax[i].Contains("=") && syntax[i].Contains(";"))
+                    {
+                        int valFrom2 = syntax[i].IndexOf("INT") + "INT".Length;
+                        int valTo2 = syntax[i].LastIndexOf("=");
+
+                        string val1 = "";
+                        
+                        val1 = syntax[i].Substring(valFrom2, valTo2 - valFrom2).Replace(" ", ""); ;
+
+                        int valFrom1 = syntax[i].IndexOf("=") + "=".Length;
+                        int valTo1 = syntax[i].LastIndexOf(";");
+                        int val2 = 0;
+
+                        val2 = Int32.Parse(syntax[i].Substring(valFrom1, valTo1 - valFrom1));
+
+                        try
+                        {
+                            hashtable.Add(val1,val2);
+                        }
+                        catch (Exception ex)
+                        {
+                            hashtable[val1] = val2;
+                        }
+                    }
+                }
+                // if (syntax[i].Contains("POLYGON") == true)
                 {
                     //polygon pg = new polygon();
                     //string errMsg = pg.getData(e, syntax[i], i);

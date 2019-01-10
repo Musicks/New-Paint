@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -22,6 +23,6 @@ namespace Paint
 
         public abstract double area();
         protected abstract void fillBackground(SolidBrush s);
-        public abstract string getData(System.Windows.Forms.PaintEventArgs e, String line, int i);
+        public abstract string getData(System.Windows.Forms.PaintEventArgs e, String line, int i,Hashtable hashtable);
     }
 }
