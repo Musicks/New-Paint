@@ -17,6 +17,7 @@ namespace Paint
         {
             InitializeComponent();
         }
+        Factory fact = new Factory();
 
        
         private void panel1_Paint(object sender, PaintEventArgs e)
@@ -32,15 +33,15 @@ namespace Paint
 
                 if (syntax[i].Contains("RECTANGLE") == true)
                 {
-
-                    rectangle rg = new rectangle();
-                    string errMsg = rg.getData(e, syntax[i], i);
+                    Shape s = fact.getShape("RECTANGLE");
+                    string errMsg = s.getData(e, syntax[i], i);
+                    textBox2.Text = errMsg;
                 }
                 if (syntax[i].Contains("SQUARE") == true)
                 {
-
-                    square rg = new square();
-                    string errMsg = rg.getData(e, syntax[i], i);
+                    Shape s = fact.getShape("SQUARE");
+                    string errMsg = s.getData(e, syntax[i], i);
+                    textBox2.Text = errMsg;
                 }
                 // if (syntax[i].Contains("TRIANGLE") == true)
                 {
@@ -50,8 +51,9 @@ namespace Paint
                 }
                if (syntax[i].Contains("CIRCLE") == true)
                 {
-                   circle crc = new circle();
-                    string errMsg = crc.getData(e, syntax[i], i);
+                    Shape s = fact.getShape("CIRCLE");
+                    string errMsg = s.getData(e, syntax[i], i);
+                    textBox2.Text = errMsg;
                 }
                // if (syntax[i].Contains("POLYGON") == true)
                 {

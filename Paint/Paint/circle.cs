@@ -11,6 +11,7 @@ namespace Paint
     {
         public Rectangle circ;
         public Graphics g;
+
         public override double area()
         {
             throw new NotImplementedException();
@@ -18,8 +19,10 @@ namespace Paint
 
         protected override void fillBackground(SolidBrush s)
         {
-            throw new NotImplementedException();
+            g.FillEllipse(s, circ);
         }
+
+       
 
         protected void paintRectangle(System.Windows.Forms.PaintEventArgs e, int l, int b, int x, int y)
         {
@@ -27,7 +30,7 @@ namespace Paint
             g = e.Graphics;
             g.DrawEllipse(black, circ);
         }
-        public String getData(System.Windows.Forms.PaintEventArgs e, String line, int i)
+        public override String getData(System.Windows.Forms.PaintEventArgs e, String line, int i)
         {
             string errMsg = "";
             if (line.Contains("[") && line.Contains("]") && line.Contains(","))
@@ -47,32 +50,32 @@ namespace Paint
                         paintRectangle(e, Int32.Parse(resultList[0]), Int32.Parse(resultList[0]), Int32.Parse(resultList[1]), Int32.Parse(resultList[2]));
                         errMsg = "";
                     }
-                    else if (resultList.Length == 5)
+                    else if (resultList.Length == 4)
                     {
-                        if (resultList[4].ToLower() == "red")
+                        if (resultList[3].ToLower() == "red")
                         {
-                            paintRectangle(e, Int32.Parse(resultList[0]), Int32.Parse(resultList[1]), Int32.Parse(resultList[2]), Int32.Parse(resultList[3]));
+                            paintRectangle(e, Int32.Parse(resultList[0]), Int32.Parse(resultList[0]), Int32.Parse(resultList[1]), Int32.Parse(resultList[2]));
                             fillBackground(fillRed);
                             errMsg = "";
                         }
-                        else if (resultList[4].ToLower() == "yellow")
+                        else if (resultList[3].ToLower() == "yellow")
                         {
-                            paintRectangle(e, Int32.Parse(resultList[0]), Int32.Parse(resultList[1]), Int32.Parse(resultList[2]), Int32.Parse(resultList[3]));
+                            paintRectangle(e, Int32.Parse(resultList[0]), Int32.Parse(resultList[0]), Int32.Parse(resultList[1]), Int32.Parse(resultList[2]));
                             fillBackground(fillYellow);
                             errMsg = "";
                         }
-                        else if (resultList[4].ToLower() == "blue")
+                        else if (resultList[3].ToLower() == "blue")
                         {
-                            paintRectangle(e, Int32.Parse(resultList[0]), Int32.Parse(resultList[1]), Int32.Parse(resultList[2]), Int32.Parse(resultList[3]));
+                            paintRectangle(e, Int32.Parse(resultList[0]), Int32.Parse(resultList[0]), Int32.Parse(resultList[1]), Int32.Parse(resultList[2]));
                             fillBackground(fillBlue);
                             errMsg = "";
                         }
                         else
                         {
-                            errMsg = resultList[4] + " is not a color in line" + (line + 1);
+                            errMsg = resultList[3] + " is not a color in line" + (line + 1);
                         }
                     }
-                    else if (resultList.Length > 5)
+                    else if (resultList.Length > 4)
                     {
                         errMsg = "Extra Fields in line " + (line + 1);
                     }

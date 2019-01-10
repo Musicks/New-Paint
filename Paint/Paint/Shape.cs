@@ -22,5 +22,6 @@ namespace Paint
 
         public abstract double area();
         protected abstract void fillBackground(SolidBrush s);
+        public abstract string getData(System.Windows.Forms.PaintEventArgs e, String line, int i);
     }
 }

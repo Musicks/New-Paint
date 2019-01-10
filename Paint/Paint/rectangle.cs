@@ -18,7 +18,7 @@ namespace Paint
 
         protected override void fillBackground(SolidBrush s)
         {
-            throw new NotImplementedException();
+            g.FillRectangle(s, rect);
         }
         protected void paintRectangle(System.Windows.Forms.PaintEventArgs e, int l, int b, int x, int y)
         {
@@ -27,7 +27,7 @@ namespace Paint
             g.DrawRectangle(black, rect);
         }
 
-        public String getData(System.Windows.Forms.PaintEventArgs e, String line, int i)
+        public override String getData(System.Windows.Forms.PaintEventArgs e, String line, int i)
         {
             string errMsg = "";
             if (line.Contains("[") && line.Contains("]") && line.Contains(","))
