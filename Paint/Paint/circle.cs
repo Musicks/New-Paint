@@ -79,6 +79,7 @@ namespace Paint
             {
                 errMsg = "Extra Fields in line " + (line + 1);
             }
+
             else
             {
                 errMsg = "Insufficient Fields in line " + (line + 1);
