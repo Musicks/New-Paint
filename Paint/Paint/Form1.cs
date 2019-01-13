@@ -42,20 +42,21 @@ namespace Paint
 
             for (int i = 0; i < syntax.Length; i++)
             {
-                if (syntax[i].Contains("loop") == true && syntax[i].Contains(":") == true && loop == false)
+                if (syntax[i].Contains("LOOP") == true && syntax[i].Contains(":") == true && loop == false)
                 {
                     indexfrom = i;
                     loop = true;
-                    int pFrom = syntax[i].IndexOf("loop") + "loop".Length;
+                    int pFrom = syntax[i].IndexOf("LOOP") + "LOOP".Length;
                     int pTo = syntax[i].LastIndexOf(":");
 
                     loop_num = Int32.Parse(syntax[i].Substring(pFrom, pTo - pFrom));
                 }
-                else if (syntax[i].Contains("endloop"))
+                else if (syntax[i].Contains("ENDLOOP") == true)
                 {
                     indexto = i;
                     for (int b = 0; b < loop_num; b++)
                     {
+                        
                         for (int a = indexfrom; a < indexto; a++)
                         {
                             validate_data(syntax, a, e);
@@ -66,21 +67,22 @@ namespace Paint
                     indexfrom = 0;
                     indexto = 0;
                 }
-                else if (syntax[i].Contains("if") == true && syntax[i].Contains(":") == true && syntax[i].Contains("==") == true)
+                else if (syntax[i].Contains("IF") == true && syntax[i].Contains(":") == true && syntax[i].Contains("==") == true)
                 {
                     ifCase = true;
 
                     ifindexfrom = i;
-                    int pFrom = syntax[i].IndexOf("if") + "if".Length;
+                    int pFrom = syntax[i].IndexOf("IF") + "IF".Length;
                     int pTo = syntax[i].LastIndexOf("==");
 
                     hashvalue = syntax[i].Substring(pFrom, pTo - pFrom);
+                    hashvalue = hashvalue.Replace(" ", String.Empty);
                     int pFrom1 = syntax[i].IndexOf("==") + "==".Length;
                     int pTo1 = syntax[i].LastIndexOf(":");
 
                     if_num = Int32.Parse(syntax[i].Substring(pFrom1, pTo1 - pFrom1));
                 }
-                else if (syntax[i].Contains("endif"))
+                else if (syntax[i].Contains("ENDIF"))
                 {
                     ifindexto = i;
 
@@ -95,9 +97,9 @@ namespace Paint
                     ifindexto = 0;
                     ifCase = false;
                 }
-                else if (syntax[i].Contains("if") == true && syntax[i].Contains("-") && syntax[i].Contains(";") == true && syntax[i].Contains("==") == true)
+                else if (syntax[i].Contains("IF") == true && syntax[i].Contains("-") && syntax[i].Contains(";") == true && syntax[i].Contains("==") == true)
                 {
-                    int pFrom = syntax[i].IndexOf("if") + "if".Length;
+                    int pFrom = syntax[i].IndexOf("IF") + "IF".Length;
                     int pTo = syntax[i].LastIndexOf("==");
 
                     string hashv = syntax[i].Substring(pFrom, pTo - pFrom);
@@ -111,14 +113,10 @@ namespace Paint
                         validate_data(syntax, i, e);
                     }
                 }
-                else if (ifCase == false && syntax[i].Contains("if") == false)
+                else if (ifCase == false && syntax[i].Contains("IF") == false)
                 {
                     validate_data(syntax, i, e);
                 }
-
-
-
-
             }
 
         }
@@ -149,6 +147,24 @@ namespace Paint
                 Shape s = fact.getShape("CIRCLE");
                 string errMsg = s.getData(e, line[i], i, hashtable);
                 textBox2.Text = errMsg;
+            }
+            if (line[i].Contains("++")==true)
+            {
+                int pFrom = line[i].IndexOf("++") + "++".Length;
+                int pTo = line[i].LastIndexOf(";");
+
+                int res = Int32.Parse(line[i].Substring(pFrom, pTo - pFrom));
+
+                string[] hash = line[i].Split(new string[] { "++" }, StringSplitOptions.None);
+                hash[0] = hash[0].Replace(" ", "");
+                try
+                {
+                    hashtable[hash[0]] = Int32.Parse(hashtable[hash[0]] + "") + res;
+                }
+                catch (Exception x)
+                {
+
+                }
             }
 
             if (line[i].Contains("TEXTURE") == true)
@@ -239,6 +255,17 @@ namespace Paint
                 }
                 textBox1.Text = fileContent;
             }
+        }
+
+        private void paintToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Paint p = new Paint();
+            p.Show();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
