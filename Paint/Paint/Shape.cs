@@ -20,6 +20,7 @@ namespace Paint
         protected System.Drawing.SolidBrush fillRed = new System.Drawing.SolidBrush(Color.Red);
         protected System.Drawing.SolidBrush fillBlue = new System.Drawing.SolidBrush(Color.Blue);
         protected System.Drawing.SolidBrush fillYellow = new System.Drawing.SolidBrush(Color.Yellow);
+        protected System.Drawing.SolidBrush fillBlack = new System.Drawing.SolidBrush(Color.Black);
 
         public abstract double area();
         protected abstract void fillBackground(SolidBrush s);

@@ -27,6 +27,11 @@ namespace Paint
             {
                 return new square();
             }
+
+            else if (shapeType.Equals("TRIANGLE"))
+            {
+                return new triangle();
+            }
             else
             {
                 //if we get here then what has been passed in is unknown so throw an appropriate exception

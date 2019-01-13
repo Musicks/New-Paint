@@ -137,10 +137,11 @@ namespace Paint
                 string errMsg = s.getData(e, line[i], i, hashtable);
                 textBox2.Text = errMsg;
             }
-            // if (syntax[i].Contains("TRIANGLE") == true)
+            if (line[i].Contains("TRIANGLE") == true)
             {
-                triangle trg = new triangle();
-                //string errMsg = trg.getData(e, syntax[i], i);
+                Shape s = fact.getShape("TRIANGLE");
+                string errMsg = s.getData(e, line[i], i, hashtable);
+                textBox2.Text = errMsg;
 
             }
             if (line[i].Contains("CIRCLE") == true)
