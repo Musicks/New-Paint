@@ -21,7 +21,15 @@ namespace Paint
         {
             g.FillRectangle(s, sqr);
         }
-
+        /// <summary>
+        /// This method sends the data to paint after filtering and also chooses colors
+        /// </summary>
+        /// <param name="e">paint argument object</param>
+        /// <param name="resultList">It saves the command in array</param>
+        /// <param name="repeat">It is a length of square</param>
+        /// <param name="line">It denotes the command in which the commands are written</param>
+        /// <param name="hashtable">It is an object of HashTable</param>
+        /// <returns></returns>
         private string filterdata(System.Windows.Forms.PaintEventArgs e, String[] resultList, int repeat, String line, Hashtable hashtable)
         {
             String errMsg = "";
@@ -30,7 +38,8 @@ namespace Paint
 
             try
             {
-                val1 = Int32.Parse(hashtable[resultList[1]] + "");
+                //val1 = Int32.Parse(hashtable[resultList[1]] + "");
+                val1 = examHash(resultList[1], hashtable);
             }
             catch (Exception ex)
             {
@@ -38,7 +47,8 @@ namespace Paint
             }
             try
             {
-                val2 = Int32.Parse(hashtable[resultList[2]] + "");
+                //val2 = Int32.Parse(hashtable[resultList[2]] + "");
+                val2 = examHash(resultList[2], hashtable);
             }
             catch (Exception ex)
             {
@@ -85,6 +95,14 @@ namespace Paint
             }
             return errMsg;
         }
+        /// <summary>
+        /// It paints the square
+        /// </summary>
+        /// <param name="e">Paint event argument</param>
+        /// <param name="l">Length</param>
+        /// <param name="b">Breadth</param>
+        /// <param name="x">X-cordinate</param>
+        /// <param name="y">Y-Cordinate</param>
         protected void paintRectangle(System.Windows.Forms.PaintEventArgs e, int l, int b, int x, int y)
         {
             sqr = new Rectangle(x, y, l, b);
@@ -92,6 +110,15 @@ namespace Paint
             g.DrawRectangle(black, sqr);
         }
 
+        /// <summary>
+        /// This method is created to validate the input that the user provides
+        /// Also in this method user can add repeat to increase the number of respective diagrams
+        /// </summary>
+        /// <param name="e">Paint Event Arguments</param>
+        /// <param name="line">It denotes the command in which the commands are written</param>
+        /// <param name="i">Integer</param>
+        /// <param name="hashtable">It is an object of HashTable</param>
+        /// <returns></returns>
         public override String getData(System.Windows.Forms.PaintEventArgs e, String line, int i,Hashtable hashtable)
         {
             string errMsg = "";
@@ -180,7 +207,8 @@ namespace Paint
                         int repeat = 0;
                         try
                         {
-                            repeat = Int32.Parse(hashtable[resultList[0]] + "");
+                            //repeat = Int32.Parse(hashtable[resultList[0]] + "");
+                            repeat = examHash(resultList[0], hashtable);
                         }
                         catch
                         {
@@ -206,7 +234,8 @@ namespace Paint
                         int repeat = 0;
                         try
                         {
-                            repeat = Int32.Parse(hashtable[resultList[0]] + "");
+                            //repeat = Int32.Parse(hashtable[resultList[0]] + "");
+                            repeat = examHash(resultList[0], hashtable);
                         }
                         catch
                         {
@@ -223,6 +252,18 @@ namespace Paint
 
             }
             return errMsg;
+        }
+        /// <summary>
+        /// This method is used to Unit Test the square
+        /// </summary>
+        /// <param name="i">String</param>
+        /// <param name="hashtable">It is an object of HashTable</param>
+        /// <returns></returns>
+
+        public int examHash(String i, Hashtable hashtable)
+        {
+            int a = Int32.Parse(hashtable[i] + "");
+            return a;
         }
     }
 }

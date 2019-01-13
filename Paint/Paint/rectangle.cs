@@ -36,7 +36,9 @@ namespace Paint
 
             try
             {
-                val1 = Int32.Parse(hashtable[resultList[2]] + "");
+                //val1 = Int32.Parse(hashtable[resultList[2]] + "");
+                val1 = examHash(resultList[2], hashtable);
+                
             }
             catch (Exception ex)
             {
@@ -44,7 +46,8 @@ namespace Paint
             }
             try
             {
-                val2 = Int32.Parse(hashtable[resultList[3]] + "");
+                //val2 = Int32.Parse(hashtable[resultList[3]] + "");
+                val2 = examHash(resultList[3], hashtable);
             }
             catch (Exception ex)
             {
@@ -181,8 +184,10 @@ namespace Paint
                         int repeat1 = 0;
                         try
                         {
-                            repeat = Int32.Parse(hashtable[resultList[repeat]] + "");
-                            repeat1 = Int32.Parse(hashtable[resultList[repeat1]] + "");
+                            //repeat = Int32.Parse(hashtable[resultList[repeat]] + "");
+                            //repeat1 = Int32.Parse(hashtable[resultList[repeat1]] + "");
+                            repeat = examHash(resultList[0], hashtable);
+                            repeat1 = examHash(resultList[1], hashtable);
                         }
                         catch
                         {
@@ -212,8 +217,10 @@ namespace Paint
                         int repeat1 = 0;
                         try
                         {
-                            repeat = Int32.Parse(hashtable[resultList[0]] + "");
-                            repeat1 = Int32.Parse(hashtable[resultList[1]] + "");
+                            //repeat = Int32.Parse(hashtable[resultList[0]] + "");
+                            //repeat1 = Int32.Parse(hashtable[resultList[1]] + "");
+                            repeat = examHash(resultList[0], hashtable);
+                            repeat1 = examHash(resultList[1], hashtable);
                         }
                         catch
                         {
@@ -231,6 +238,11 @@ namespace Paint
 
             }
             return errMsg;
+        }
+        public int examHash(String i, Hashtable hashtable)
+        {
+            int a = Int32.Parse(hashtable[i] + "");
+            return a;
         }
     }
 }

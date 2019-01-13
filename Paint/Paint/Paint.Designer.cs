@@ -37,6 +37,7 @@
             this.ClientSize = new System.Drawing.Size(745, 359);
             this.Name = "Paint";
             this.Text = "Paint";
+            this.Load += new System.EventHandler(this.Paint_Load);
             this.ResumeLayout(false);
 
         }

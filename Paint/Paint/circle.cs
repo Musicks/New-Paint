@@ -22,7 +22,15 @@ namespace Paint
         {
             g.FillEllipse(s, circ);
         }
-
+        /// <summary>
+        /// This method sends the data to paint after filtering and also chooses colors
+        /// </summary>
+        /// <param name="e"> paint argument object</param>
+        /// <param name="resultList">It saves the command in array</param>
+        /// <param name="repeat">It is a radius of circle</param>
+        /// <param name="line">It denotes the command in which the commands are written</param>
+        /// <param name="hashtable">It is an object of HashTable</param>
+        /// <returns></returns>
         private string filterdata(System.Windows.Forms.PaintEventArgs e, String[] resultList, int repeat, String line,Hashtable hashtable)
         {
             String errMsg = "";
@@ -31,7 +39,8 @@ namespace Paint
 
             try
             {
-                val1 = Int32.Parse(hashtable[resultList[1]]+"");
+                //val1 = Int32.Parse(hashtable[resultList[1]]+"");
+                repeat = examHash(resultList[1], hashtable);
             }
             catch (Exception ex)
             {
@@ -39,7 +48,8 @@ namespace Paint
             }
             try
             {
-                val2 = Int32.Parse(hashtable[resultList[2]] + "");
+                //val2 = Int32.Parse(hashtable[resultList[2]] + "");
+                repeat = examHash(resultList[2], hashtable);
             }
             catch (Exception ex)
             {
@@ -86,12 +96,28 @@ namespace Paint
             }
             return errMsg;
         }
+        /// <summary>
+        /// It Paints the Circle
+        /// </summary>
+        /// <param name="e">Paint event argument</param>
+        /// <param name="l">Radius</param>
+        /// <param name="b">Radius</param>
+        /// <param name="x">it is a coordinate</param>
+        /// <param name="y">it is a coordinate</param>
         protected void paintRectangle(System.Windows.Forms.PaintEventArgs e, int l, int b, int x, int y)
         {
             circ = new Rectangle(x, y, l, b);
             g = e.Graphics;
             g.DrawEllipse(black, circ);
         }
+        /// <summary>
+        /// This method is created to validate the input that the user provides
+        /// </summary>
+        /// <param name="e">Paint Event Argument</param>
+        /// <param name="line">It denotes the command in which the commands are written</param>
+        /// <param name="i">integer</param>
+        /// <param name="hashtable">It is an object of HashTable</param>
+        /// <returns></returns>
         public override String getData(System.Windows.Forms.PaintEventArgs e, String line, int i,Hashtable hashtable)
         {
             string errMsg = "";
@@ -180,7 +206,8 @@ namespace Paint
                         int repeat = 0;
                         try
                         {
-                            repeat = Int32.Parse(hashtable[resultList[0]]+"");
+                            //repeat = Int32.Parse(hashtable[resultList[0]]+"");
+                            repeat = examHash(resultList[0], hashtable);
                         }
                         catch
                         {
@@ -206,7 +233,8 @@ namespace Paint
                         int repeat = 0;
                         try
                         {
-                            repeat = Int32.Parse(hashtable[resultList[0]]+"");
+                            //repeat = Int32.Parse(hashtable[resultList[0]]+"");
+                            repeat = examHash(resultList[0], hashtable);
                         }
                         catch
                         {
@@ -224,5 +252,17 @@ namespace Paint
             }
             return errMsg;
         }
+        /// <summary>
+        /// This method is used to Unit Test the Circle
+        /// </summary>
+        /// <param name="i">String</param>
+        /// <param name="hashtable">It is an object of HashTable</param>
+        /// <returns></returns>
+        public int examHash(String i, Hashtable hashtable)
+        {
+            int a = Int32.Parse(hashtable[i] + "");
+            return a;
+        }
     }
+    
 }

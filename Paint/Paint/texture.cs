@@ -18,7 +18,15 @@ namespace Paint
         {
             throw new NotImplementedException();
         }
-
+        /// <summary>
+        /// This method is created to validate the input that the user provides
+        /// Also in this method user can add repeat to increase the number of respective diagrams
+        /// </summary>
+        /// <param name="e">Event Argument</param>
+        /// <param name="line">It denotes the command in which the commands are written</param>
+        /// <param name="i">integer</param>
+        /// <param name="hashtable">It is an object of HashTable</param>
+        /// <returns></returns>
         public override string getData(PaintEventArgs e, string line, int i, Hashtable hashtable)
         {
             string errMsg = "";
@@ -150,6 +158,15 @@ namespace Paint
             }
             return errMsg;
         }
+        /// <summary>
+        /// This method sends the data to paint after filtering
+        /// </summary>
+        /// <param name="e">Paint event argument</param>
+        /// <param name="resultList">It saves the command in array</param>
+        /// <param name="repeat">It is a length of texture</param>
+        /// <param name="line">It denotes the command in which the commands are written</param>
+        /// <param name="hashTable">It is an object of HashTable</param>
+        /// <returns></returns>
         private String filterdata(PaintEventArgs e, string[] resultList, int repeat, string line, Hashtable hashTable)
         {
 
@@ -177,50 +194,7 @@ namespace Paint
                 paintSquare(e, repeat, repeat, x, y);
                 errMsg = "";
             }
-            /*
-            else if (resultList.Length == 4)
-            {
-                if (resultList[3] == "red")
-                {
-                    try
-                    {
-                        x = Int32.Parse(hashTable[resultList[1]] + "");
-                    }
-                    catch (Exception ex)
-                    {
-                        x = Int32.Parse(resultList[1]);
-                    }
-                    try
-                    {
-                        y = Int32.Parse(hashTable[resultList[2]] + "");
-                    }
-                    catch (Exception ex)
-                    {
-                        y = Int32.Parse(resultList[2]);
-                    }
-                    paintSquare(e, repeat, repeat, x, y);
-                    BackgroundFill(fillRed);
-                    errMsg = "";
-
-                }
-                else if (resultList[3] == "yellow")
-                {
-                    paintSquare(e, repeat, repeat, x, y);
-                    BackgroundFill(fillYellow);
-                    errMsg = "";
-                }
-                else if (resultList[3] == "blue")
-                {
-                    paintSquare(e, repeat, repeat, x, y);
-                    BackgroundFill(fillBlue);
-                    errMsg = "";
-                }
-                else
-                {
-                    errMsg = resultList[3] + " is not a color in line - " + (line + 1);
-                }
-            }
-            */
+           
             else if (resultList.Length > 4)
             {
                 errMsg = "Extra Fields in line - " + (line + 1);
@@ -236,7 +210,14 @@ namespace Paint
         {
             throw new NotImplementedException();
         }
-
+        /// <summary>
+        /// This method is used inorder to draw a texture after taking the image file as user provides
+        /// </summary>
+        /// <param name="e">Paint Event Argument</param>
+        /// <param name="w">integer</param>
+        /// <param name="h">integer</param>
+        /// <param name="x">integer</param>
+        /// <param name="y">integer</param>
         protected void paintSquare(System.Windows.Forms.PaintEventArgs e, int w, int h, int x, int y)
         {
             rec = new Rectangle(x, y, h, w);

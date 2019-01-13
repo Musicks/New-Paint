@@ -25,6 +25,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\Paint.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -74,6 +75,7 @@
     <Compile Include="rectangle.cs" />
     <Compile Include="Shape.cs" />
     <Compile Include="square.cs" />
+    <Compile Include="Test.cs" />
     <Compile Include="texture.cs" />
     <Compile Include="triangle.cs" />
     <EmbeddedResource Include="Form1.resx">

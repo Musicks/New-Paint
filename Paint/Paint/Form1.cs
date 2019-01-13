@@ -22,7 +22,14 @@ namespace Paint
         }
         Factory fact = new Factory();
 
-       
+        /// <summary>
+        /// This method reads the command from textbox and splits with space 
+        /// It also reads the command and executes loop until and unless the loop is stopped
+        /// It also reads the command and executes if-endif condition until and unless the if condition is ends with endif
+        /// Parsing method is implemented where string is converted into integer
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e">Graphic </param>
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
             Boolean loop = false;
@@ -120,7 +127,13 @@ namespace Paint
             }
 
         }
-
+        /// <summary>
+        /// This method uses factory shape method where the specified shape is passed and it executes them
+        /// It not only reads numbers but also reads datatype values
+        /// </summary>
+        /// <param name="line"></param>
+        /// <param name="i"></param>
+        /// <param name="e"></param>
         private void validate_data(String [] line, int i, PaintEventArgs e )
         {
             if (line[i].Contains("RECTANGLE") == true)
@@ -203,6 +216,11 @@ namespace Paint
             
         }
 
+        /// <summary>
+        /// This method exceutes each and every commands
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
             String command = textBox1.Text;
@@ -215,7 +233,11 @@ namespace Paint
                 }
             }
         }
-
+        /// <summary>
+        /// This method is used to save file in text format
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SaveFileDialog dialog = new SaveFileDialog();
@@ -231,7 +253,11 @@ namespace Paint
 
             }
         }
-
+        /// <summary>
+        /// This method is used to load the file
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void loadToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var fileContent = string.Empty;
@@ -257,6 +283,11 @@ namespace Paint
             }
         }
 
+        /// <summary>
+        /// It calls the new paint form
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void paintToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Paint p = new Paint();

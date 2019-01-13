@@ -18,7 +18,15 @@ namespace Paint
         {
             throw new NotImplementedException();
         }
-
+        /// <summary>
+        /// This method is created to validate the input that the user provides
+        /// Also in this method user can add repeat to increase the number of respective diagrams
+        /// </summary>
+        /// <param name="e">Paint Event argument</param>
+        /// <param name="line">t denotes the command in which the commands are written</param>
+        /// <param name="i">integer</param>
+        /// <param name="hashtable">It is an object of HashTable</param>
+        /// <returns></returns>
         public override string getData(PaintEventArgs e, string line, int i, Hashtable hashtable)
         {
             string errMsg = "";
@@ -134,7 +142,7 @@ namespace Paint
 
                         for (int y = 0; y < val1; y++)
                         {
-                            errMsg = manageData(e, resultList, repeat1, repeat2, repeat3, repeat4, repeat5, repeat6, line, hashtable);
+                            errMsg = filterdata(e, resultList, repeat1, repeat2, repeat3, repeat4, repeat5, repeat6, line, hashtable);
                             if (addition == true)
                             {
                                 repeat1 = repeat1 + val1;
@@ -193,7 +201,7 @@ namespace Paint
                             errMsg = "There should be 6 inputs for a triangle";
                         }
 
-                        errMsg = manageData(e, resultList, repeat1, repeat2, repeat3, repeat4, repeat5, repeat6, line, hashtable);
+                        errMsg = filterdata(e, resultList, repeat1, repeat2, repeat3, repeat4, repeat5, repeat6, line, hashtable);
                     }
                 }
                 catch (Exception ex)
@@ -204,8 +212,21 @@ namespace Paint
             }
             return errMsg;
         }
-
-        private String manageData(PaintEventArgs e, string[] resultList, int repeat1, int repeat2, int repeat3, int repeat4, int repeat5, int repeat6, string line, Hashtable hashTable)
+        /// <summary>
+        /// This method sends the data to paint after filtering it and also chooses colors as user provides the command
+        /// </summary>
+        /// <param name="e">Paint event argument</param>
+        /// <param name="resultList">It saves the command in array</param>
+        /// <param name="repeat1">co-ordinates</param>
+        /// <param name="repeat2">co-ordinates</param>
+        /// <param name="repeat3">co-ordinates</param>
+        /// <param name="repeat4">co-ordinates</param>
+        /// <param name="repeat5">co-ordinates</param>
+        /// <param name="repeat6">co-ordinates</param>
+        /// <param name="line">It denotes the command in which the commands are written</param>
+        /// <param name="hashTable">It is an object of HashTable</param>
+        /// <returns></returns>
+        private String filterdata(PaintEventArgs e, string[] resultList, int repeat1, int repeat2, int repeat3, int repeat4, int repeat5, int repeat6, string line, Hashtable hashTable)
         {
 
             string errMsg = "";
@@ -255,6 +276,18 @@ namespace Paint
             return errMsg;
         }
 
+        /// <summary>
+        /// his method is used inorder to draw a traingles
+        /// </summary>
+        /// <param name="e">co-ordinat</param>
+        /// <param name="a">co-ordinat</param>
+        /// <param name="b">co-ordinat</param>
+        /// <param name="c">co-ordinat</param>
+        /// <param name="d">co-ordinat</param>
+        /// <param name="f">co-ordinat</param>
+        /// <param name="g">co-ordinat</param>
+        /// <param name="resultList">It saves the command in array</param>
+        /// <param name="s">Solid brush</param>
         protected void paintTriangle(System.Windows.Forms.PaintEventArgs e, int a, int b, int c, int d, int f, int g, String[] resultList, SolidBrush s)
         {
             Point[] points = { new Point(a, b), new Point(c, d), new Point(f, g) };

@@ -31,6 +31,10 @@ namespace Paint
             this.Text = "Scribble";
         }
 
+        /// <summary>
+        /// The OnMouseDown method also allows derived classes to handle the event without attaching a delegate. This is the preferred technique for handling the event in a derived class
+        /// </summary>
+        /// <param name="e">Mouse Event Argument</param>
         protected override void OnMouseDown(MouseEventArgs e)
         {
             mouseDown = true;
@@ -46,17 +50,29 @@ namespace Paint
             }
         }
 
+        /// <summary>
+        /// Whenever the rightmouse button is clicked it gives different options of colors to choose
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e">Event Argument</param>
         protected void RightMouseButton_Click(object sender, EventArgs e)
         {
             color = ((MenuItem)sender).Text;
             p = new Pen(Color.FromName(color));
         }
 
+        /// <summary>
+        ///  OnMouseUp method also allows derived classes to handle the event without attaching a delegate
+        /// </summary>
+        /// <param name="e">Mouse Event Argument</param>
         protected override void OnMouseUp(MouseEventArgs e)
         {
             mouseDown = false;
         }
-
+        /// <summary>
+        /// Draws a line from one point to another
+        /// </summary>
+        /// <param name="e"></param>
         protected override void OnMouseMove(MouseEventArgs e)
         {
             if (lastPoint.Equals(Point.Empty)) lastPoint = new Point(e.X, e.Y);
@@ -75,6 +91,9 @@ namespace Paint
             p.Show();
         }
 
-       
+        private void Paint_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

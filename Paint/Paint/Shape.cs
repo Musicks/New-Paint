@@ -8,6 +8,10 @@ using System.Threading.Tasks;
 
 namespace Paint
 {
+
+    /// <summary>
+    /// This class is used to declare the pen tools with their specific colors
+    /// </summary>
     public abstract class Shape
     {
         public string name;
