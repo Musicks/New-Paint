@@ -150,6 +150,13 @@ namespace Paint
                 string errMsg = s.getData(e, line[i], i, hashtable);
                 textBox2.Text = errMsg;
             }
+
+            if (line[i].Contains("TEXTURE") == true)
+            {
+                Shape s = fact.getShape("TEXTURE");
+                string errMsg = s.getData(e, line[i], i, hashtable);
+                textBox2.Text = errMsg;
+            }
             if (line[i].Contains("INT") == true)
             {
                 if (line[i].Contains("=") && line[i].Contains(";"))
@@ -177,11 +184,7 @@ namespace Paint
                     }
                 }
             }
-            // if (syntax[i].Contains("POLYGON") == true)
-            {
-                //polygon pg = new polygon();
-                //string errMsg = pg.getData(e, syntax[i], i);
-            }
+            
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)

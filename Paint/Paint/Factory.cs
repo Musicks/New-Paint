@@ -32,6 +32,11 @@ namespace Paint
             {
                 return new triangle();
             }
+
+            else if (shapeType.Equals("TEXTURE"))
+            {
+                return new texture();
+            }
             else
             {
                 //if we get here then what has been passed in is unknown so throw an appropriate exception

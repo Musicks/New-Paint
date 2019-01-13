@@ -110,24 +110,27 @@ namespace Paint
                         int repeat4 = 0;
                         int repeat5 = 0;
                         int repeat6 = 0;
-                        try
-                        {
-                            repeat1 = Int32.Parse(hashtable[resultList[0]] + "");
-                            repeat2 = Int32.Parse(hashtable[resultList[1]] + "");
-                            repeat3 = Int32.Parse(hashtable[resultList[2]] + "");
-                            repeat4 = Int32.Parse(hashtable[resultList[3]] + "");
-                            repeat5 = Int32.Parse(hashtable[resultList[4]] + "");
-                            repeat6 = Int32.Parse(hashtable[resultList[5]] + "");
-                        }
-                        catch
-                        {
-                            repeat1 = Int32.Parse(resultList[0]);
-                            repeat2 = Int32.Parse(resultList[1]);
-                            repeat3 = Int32.Parse(resultList[2]);
-                            repeat4 = Int32.Parse(resultList[3]);
-                            repeat5 = Int32.Parse(resultList[4]);
-                            repeat6 = Int32.Parse(resultList[5]);
-                        }
+                       
+                            try
+                            {
+                                repeat1 = Int32.Parse(hashtable[resultList[0]] + "");
+                                repeat2 = Int32.Parse(hashtable[resultList[1]] + "");
+                                repeat3 = Int32.Parse(hashtable[resultList[2]] + "");
+                                repeat4 = Int32.Parse(hashtable[resultList[3]] + "");
+                                repeat5 = Int32.Parse(hashtable[resultList[4]] + "");
+                                repeat6 = Int32.Parse(hashtable[resultList[5]] + "");
+                            }
+                            catch
+                            {
+                                repeat1 = Int32.Parse(resultList[0]);
+                                repeat2 = Int32.Parse(resultList[1]);
+                                repeat3 = Int32.Parse(resultList[2]);
+                                repeat4 = Int32.Parse(resultList[3]);
+                                repeat5 = Int32.Parse(resultList[4]);
+                                repeat6 = Int32.Parse(resultList[5]);
+                            }
+                        
+                        
 
                         for (int y = 0; y < val1; y++)
                         {
@@ -153,6 +156,7 @@ namespace Paint
                                 repeat6 = repeat6 - val1;
                             }
                         }
+                        
 
                     }
                     else
@@ -163,24 +167,32 @@ namespace Paint
                         int repeat4 = 0;
                         int repeat5 = 0;
                         int repeat6 = 0;
-                        try
+                        if (resultList.Length == 6)
                         {
-                            repeat1 = Int32.Parse(hashtable[resultList[0]] + "");
-                            repeat2 = Int32.Parse(hashtable[resultList[1]] + "");
-                            repeat3 = Int32.Parse(hashtable[resultList[2]] + "");
-                            repeat4 = Int32.Parse(hashtable[resultList[3]] + "");
-                            repeat5 = Int32.Parse(hashtable[resultList[4]] + "");
-                            repeat6 = Int32.Parse(hashtable[resultList[5]] + "");
+                            try
+                            {
+                                repeat1 = Int32.Parse(hashtable[resultList[0]] + "");
+                                repeat2 = Int32.Parse(hashtable[resultList[1]] + "");
+                                repeat3 = Int32.Parse(hashtable[resultList[2]] + "");
+                                repeat4 = Int32.Parse(hashtable[resultList[3]] + "");
+                                repeat5 = Int32.Parse(hashtable[resultList[4]] + "");
+                                repeat6 = Int32.Parse(hashtable[resultList[5]] + "");
+                            }
+                            catch
+                            {
+                                repeat1 = Int32.Parse(resultList[0]);
+                                repeat2 = Int32.Parse(resultList[1]);
+                                repeat3 = Int32.Parse(resultList[2]);
+                                repeat4 = Int32.Parse(resultList[3]);
+                                repeat5 = Int32.Parse(resultList[4]);
+                                repeat6 = Int32.Parse(resultList[5]);
+                            }
                         }
-                        catch
+                        else
                         {
-                            repeat1 = Int32.Parse(resultList[0]);
-                            repeat2 = Int32.Parse(resultList[1]);
-                            repeat3 = Int32.Parse(resultList[2]);
-                            repeat4 = Int32.Parse(resultList[3]);
-                            repeat5 = Int32.Parse(resultList[4]);
-                            repeat6 = Int32.Parse(resultList[5]);
+                            errMsg = "There should be 6 inputs for a triangle";
                         }
+
                         errMsg = manageData(e, resultList, repeat1, repeat2, repeat3, repeat4, repeat5, repeat6, line, hashtable);
                     }
                 }
