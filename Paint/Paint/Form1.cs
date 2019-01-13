@@ -300,7 +300,11 @@ namespace Paint
         {
 
         }
-
+        /// <summary>
+        /// This method is used to login to Github inorder to view the Live Reposiotries
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e">Event Arguments</param>
         private void liveRepoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             IWebDriver driver = new ChromeDriver();
