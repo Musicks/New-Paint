@@ -28,6 +28,70 @@ namespace Paint
             g.DrawRectangle(black, rect);
         }
 
+        private string filterdata(System.Windows.Forms.PaintEventArgs e, String[] resultList, int repeat, int repeat1, String line, Hashtable hashtable)
+        {
+            String errMsg = "";
+            int val1 = 0;
+            int val2 = 0;
+
+            try
+            {
+                val1 = Int32.Parse(hashtable[resultList[2]] + "");
+            }
+            catch (Exception ex)
+            {
+                val1 = Int32.Parse(resultList[2]);
+            }
+            try
+            {
+                val2 = Int32.Parse(hashtable[resultList[3]] + "");
+            }
+            catch (Exception ex)
+            {
+                val2 = Int32.Parse(resultList[3]);
+            }
+            if (resultList.Length == 4)
+            {
+                paintRectangle(e, repeat, repeat1, val1, val2);
+                errMsg = "";
+            }
+            else if (resultList.Length == 5)
+            {
+                if (resultList[4].ToLower() == "red")
+                {
+                    paintRectangle(e, repeat, repeat1, val1, val2);
+                    fillBackground(fillRed);
+                    errMsg = "";
+                }
+                else if (resultList[4].ToLower() == "yellow")
+                {
+                    paintRectangle(e, repeat, repeat1, val1, val2);
+                    fillBackground(fillYellow);
+                    errMsg = "";
+                }
+                else if (resultList[4].ToLower() == "blue")
+                {
+                    paintRectangle(e, repeat, repeat1, val1, val2);
+                    fillBackground(fillBlue);
+                    errMsg = "";
+                }
+                else
+                {
+                    errMsg = resultList[4] + " is not a color in line" + (line + 1);
+                }
+            }
+            else if (resultList.Length > 5)
+            {
+                errMsg = "Extra Fields in line " + (line + 1);
+            }
+
+            else
+            {
+                errMsg = "Insufficient Fields in line " + (line + 1);
+            }
+            return errMsg;
+        }
+
         public override String getData(System.Windows.Forms.PaintEventArgs e, String line, int i,Hashtable hashtable)
         {
             string errMsg = "";
@@ -43,44 +107,122 @@ namespace Paint
                 string[] resultList = result.Split(',');
                 try
                 {
-                    if (resultList.Length == 4)
+                    int val1 = 0;
+                    int val2 = 0;
+                    Boolean addition = true;
+                    if (line.Contains("REPEAT") && line.Contains(";"))
                     {
-                        paintRectangle(e, Int32.Parse(resultList[0]), Int32.Parse(resultList[1]), Int32.Parse(resultList[2]), Int32.Parse(resultList[3]));
-                        errMsg = "";
-                    }
-                    else if (resultList.Length == 5)
-                    {
-                        if (resultList[4].ToLower() == "red")
+                        if (line.Contains("+"))
                         {
-                            paintRectangle(e, Int32.Parse(resultList[0]), Int32.Parse(resultList[1]), Int32.Parse(resultList[2]), Int32.Parse(resultList[3]));
-                            fillBackground(fillRed);
-                            errMsg = "";
+                            int valFrom = line.IndexOf("REPEAT") + "REPEAT".Length;
+                            int valTo = line.LastIndexOf("+");
+
+                            int valFrom2 = line.IndexOf("+") + "+".Length;
+                            int valTo2 = line.LastIndexOf(";");
+
+                            try
+                            {
+                                val1 = Int32.Parse(hashtable[line.Substring(valFrom, valTo - valFrom)] + "");
+                            }
+                            catch (Exception exception)
+                            {
+                                val1 = Int32.Parse(line.Substring(valFrom, valTo - valFrom));
+                            }
+                            try
+                            {
+                                val2 = Int32.Parse(hashtable[line.Substring(valFrom2, valTo2 - valFrom2)] + "");
+                            }
+                            catch (Exception exception)
+                            {
+                                val2 = Int32.Parse(line.Substring(valFrom2, valTo2 - valFrom2));
+                            }
+                            addition = true;
                         }
-                        else if (resultList[4].ToLower() == "yellow")
+                        else if (line.Contains("-"))
                         {
-                            paintRectangle(e, Int32.Parse(resultList[0]), Int32.Parse(resultList[1]), Int32.Parse(resultList[2]), Int32.Parse(resultList[3]));
-                            fillBackground(fillYellow);
-                            errMsg = "";
-                        }
-                        else if (resultList[4].ToLower() == "blue")
-                        {
-                            paintRectangle(e, Int32.Parse(resultList[0]), Int32.Parse(resultList[1]), Int32.Parse(resultList[2]), Int32.Parse(resultList[3]));
-                            fillBackground(fillBlue);
-                            errMsg = "";
+                            int valFrom3 = line.IndexOf("REPEAT") + "REPEAT".Length;
+                            int valTo3 = line.LastIndexOf("-");
+
+                            int valFrom4 = line.IndexOf("-") + "-".Length;
+                            int valTo4 = line.LastIndexOf(";");
+
+                            try
+                            {
+                                val1 = Int32.Parse(hashtable[line.Substring(valFrom3, valTo3 - valFrom3)] + "");
+                            }
+                            catch (Exception exception)
+                            {
+                                val1 = Int32.Parse(line.Substring(valFrom3, valTo3 - valFrom3));
+                            }
+                            try
+                            {
+                                val2 = Int32.Parse(hashtable[line.Substring(valFrom4, valTo4 - valFrom4)] + "");
+                            }
+                            catch (Exception exception)
+                            {
+                                val2 = Int32.Parse(line.Substring(valFrom4, valTo4 - valFrom4));
+                            }
+                            addition = false;
+
+
                         }
                         else
                         {
-                            errMsg = resultList[4] + " is not a color in line" + (line + 1);
+                            errMsg = "Invalid Syntax. Please Write The Code Properly." + (line + 1);
                         }
+
+
                     }
-                    else if (resultList.Length > 5)
+
+
+                    if (val1 != 0 && val2 != 0)
                     {
-                        errMsg = "Extra Fields in line " + (line + 1);
+                        int repeat = 0;
+                        int repeat1 = 0;
+                        try
+                        {
+                            repeat = Int32.Parse(hashtable[resultList[repeat]] + "");
+                            repeat1 = Int32.Parse(hashtable[resultList[repeat1]] + "");
+                        }
+                        catch
+                        {
+                            repeat = Int32.Parse(resultList[repeat]);
+                            repeat1 = Int32.Parse(resultList[repeat1]);
+                        }
+
+                        for (int y = 0; y < val1; y++)
+                        {
+                            errMsg = filterdata(e, resultList, repeat, repeat1, line, hashtable);
+                            if (addition == true)
+                            {
+                                repeat = repeat + val1;
+                                repeat1 = repeat1 + val1;
+                            }
+                            else
+                            {
+                                repeat = repeat - val1;
+                                repeat1 = repeat1 + val1;
+                            }
+                        }
+
                     }
                     else
                     {
-                        errMsg = "Insufficient Fields in line " + (line + 1);
+                        int repeat = 0;
+                        int repeat1 = 0;
+                        try
+                        {
+                            repeat = Int32.Parse(hashtable[resultList[0]] + "");
+                            repeat1 = Int32.Parse(hashtable[resultList[1]] + "");
+                        }
+                        catch
+                        {
+                            repeat = Int32.Parse(resultList[0]);
+                            repeat1 = Int32.Parse(resultList[1]);
+                        }
+                        errMsg = filterdata(e, resultList, repeat, repeat1, line, hashtable);
                     }
+
                 }
                 catch (Exception ex)
                 {

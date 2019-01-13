@@ -201,8 +201,7 @@ namespace Paint
             SaveFileDialog dialog = new SaveFileDialog();
             if (dialog.ShowDialog() == DialogResult.OK)
             {
-                dialog.Filter = "Text File|*.txt";
-                string path = dialog.FileName;
+                string path = Path.ChangeExtension(dialog.FileName, ".txt");
                 using (var fs = File.Create(path))
                 using (StreamWriter bw = new StreamWriter(fs))
                 {
